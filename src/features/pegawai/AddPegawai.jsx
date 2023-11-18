@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 import { usePegawaiContext } from "./PegawaiContext";
 import pegawaiSchema from "./pegawaiSchema";
@@ -19,9 +21,9 @@ const AddPegawai = () => {
     resolver: yupResolver(pegawaiSchema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     try {
-      // await axios.patch(`/api/Pegawai/`,data);
+      //   await axios.post(`/api/Pegawai/`, { id: uuidv4(), ...data });
       dispatch({ type: "ADD_PEGAWAI", payload: data });
       navigate(-1);
     } catch (error) {
